@@ -6,7 +6,9 @@ import org.jasypt.encryption.pbe.PooledPBEStringEncryptor;
 import org.jasypt.encryption.pbe.config.SimpleStringPBEConfig;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+import java.security.SecureRandom;
 import java.util.Scanner;
 
 @Configuration
@@ -16,6 +18,13 @@ public class SecurityConfig {
     private static String PIPER = "IloveSecurityForLivingAndJoy";
 
     public static StringEncryptor customOp = jasyptStringEncryptorBean();
+
+    @Bean
+    public BCryptPasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder(8,
+                                         new SecureRandom("denemedskhfksjfh4566tryry438437834ksjfhksjfhksjfh".getBytes()));
+
+    }
 
     @Bean
     public StringEncryptor jasyptStringEncryptor() {
@@ -49,7 +58,7 @@ public class SecurityConfig {
     }
 
     public static void main2(String[] args) {
-        try (Scanner scanner = new Scanner(System.in)){
+        try (Scanner scanner = new Scanner(System.in)) {
             System.out.println("Dec String : ");
             String s = scanner.nextLine();
             String encrypt = jasyptStringEncryptorBean().decrypt(s);
@@ -60,7 +69,7 @@ public class SecurityConfig {
     }
 
     public static void main(String[] args) {
-        try (Scanner scanner = new Scanner(System.in)){
+        try (Scanner scanner = new Scanner(System.in)) {
             System.out.println("Enc String : ");
             String s = scanner.nextLine();
             String encrypt = jasyptStringEncryptorBean().encrypt(s);

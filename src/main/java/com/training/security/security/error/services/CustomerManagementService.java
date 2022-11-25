@@ -1,4 +1,4 @@
-package com.training.security.security.customer.services;
+package com.training.security.security.error.services;
 
 import com.training.security.security.customer.data.CustomerDbOperations;
 import com.training.security.security.customer.services.models.Customer;

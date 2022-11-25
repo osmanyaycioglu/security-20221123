@@ -16,4 +16,6 @@ public interface ICustomerDao extends JpaRepository<Customer,Long> {
     @Transactional
     void updateCustomerByUuid(String customerUuidParam,
                               ECustomerStatus deletedParam);
+
+    Customer findByHashName(int hash);
 }

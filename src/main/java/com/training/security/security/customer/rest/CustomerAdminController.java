@@ -2,7 +2,7 @@ package com.training.security.security.customer.rest;
 
 import com.training.security.security.customer.rest.mappings.ICustomerMappings;
 import com.training.security.security.customer.rest.model.CustomerRest;
-import com.training.security.security.customer.services.CustomerManagementService;
+import com.training.security.security.error.services.CustomerManagementService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

@@ -20,27 +20,32 @@ public class Customer {
     @NotEmpty
     private String          customerUuid;
     @NotEmpty
-    @Size(min=2,max=20)
+    @Size(min = 2, max = 20)
     private String          name;
     @NotEmpty
-    @Size(min=3,max=25)
+    @Size(min = 3, max = 25)
     private String          surname;
     @Convert(converter = EncAttributeChanger.class)
     private String          customerCity;
     @Convert(converter = EncAttributeChanger.class)
     private String          customerSalt;
+    @Enumerated(EnumType.STRING)
     private ECustomerStatus customerStatus = ECustomerStatus.ACTIVE;
     private LocalDateTime   addDate;
     private LocalDateTime   updateDate;
+    @Column(unique = true)
+    private int             hashName;
 
     @PreUpdate
-    public void updateDateFill() {
+    public void preUpdate() {
         updateDate = LocalDateTime.now();
+        hashName = customerCity.hashCode();
     }
 
     @PrePersist
-    public void addDateFill() {
+    public void preInsert() {
         addDate = LocalDateTime.now();
+        hashName = customerCity.hashCode();
     }
 
 }
